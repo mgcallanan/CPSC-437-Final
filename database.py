@@ -53,7 +53,7 @@ def get_cheese_pairings(wine_variety):
         with closing(connection.cursor()) as cursor:
 
             query_str = """
-                SELECT wines.title, wines.variety, GROUP_CONCAT(DISTINCT cheeses.name) FROM wines
+                SELECT wines.title, wines.variety, GROUP_CONCAT(DISTINCT cheeses.name) AS cheese_pairings FROM wines
                 JOIN cheeses
                 ON cheeses.wine_pairings LIKE '%'||wines.variety||'%'
                 WHERE wines.variety LIKE '%:wine_variety%'

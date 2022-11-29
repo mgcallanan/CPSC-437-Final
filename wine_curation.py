@@ -1,7 +1,7 @@
 import sys
 import argparse
 
-# default values
+# default entries
 default = {
     "name": "Louis M. Martini 2012 Cabernet Sauvignon",
     "price": "$35",

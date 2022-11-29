@@ -11,13 +11,28 @@ default = {
     "review": "\"...juicy explosion of rich...\" (V. Boone)"
 }
 
+# use the database to search given queries
+def query_db(query):
+    results = []
+    return results
+
 # provides wine curation based on user inputs
 def curate_wine(args):
-    print("curating\n")
     results = []
 
-    if len(sys.argv) == 1:
+    # filter out none-value arguments
+    args = {k: v for k, v in vars(args).items() if v is not None}
+    if len(args) < 1:   # when no argument is given, we return default entries
         results.append(default)
+    
+    query = ""
+    for arg in args: # dictionary of arguments
+        match arg:
+            case "price_max":
+                query += ""
+            case "price_min":
+                query = ""
+    results = query_db(query)
 
     return results
 

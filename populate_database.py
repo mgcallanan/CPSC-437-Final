@@ -103,7 +103,7 @@ with open("winemag-data-130k-v2.csv", newline="") as f:
     # order is: id country	description	designation	points	price	province	region_1	region_2	taster_name	taster_twitter_handle   title   variety
     #           0   1       2           3           4       5       6           7           8           9           10                      11      12
     for line in reader:
-        wine = Wine(line[0], line[5], line[1], line[11], line[6], line[12])
+        wine = Wine(line[0], line[5], line[1], line[11], line[12], line[6])
         add_to_wines(wine)
 
         review = Review(line[0], line[0], line[2], line[10])

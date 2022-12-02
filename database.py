@@ -49,6 +49,7 @@ def get_cheese_pairings(wine_variety):
     pairings = []
 
     with connect(_DATABASE_URL, uri=True) as connection:
+        wine_variety_str = f"%{wine_variety}%"
 
         with closing(connection.cursor()) as cursor:
 
@@ -56,11 +57,11 @@ def get_cheese_pairings(wine_variety):
                 SELECT wines.title, wines.variety, GROUP_CONCAT(DISTINCT cheeses.name) AS cheese_pairings FROM wines
                 JOIN cheeses
                 ON cheeses.wine_pairings LIKE '%'||wines.variety||'%'
-                WHERE wines.variety LIKE '%:wine_variety%'
+                WHERE wines.variety LIKE :wine_variety
                 GROUP BY wines.title
             """
 
-            query_args = {"wine_variety": wine_variety}
+            query_args = {"wine_variety": wine_variety_str}
 
             cursor.execute(query_str, query_args)
 

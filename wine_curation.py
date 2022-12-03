@@ -29,6 +29,8 @@ def wine_and_cheese_to_pairingresult(wine, cheese_list):
 def query_db(filters):
     # first get all wines
     wines = get_wine_from_filters(filters)
+    if wines is None:
+        return None
     # pick the top 5
     top_pairings = []
     idx = 0
@@ -63,7 +65,7 @@ def curate_wine(args):
             case "price_min":
                 filters["price_min"] = args["price_min"]
             case "flavor":
-                filters["flavor"] = args['flavor'].split(",")
+                filters["flavor"] = args['flavor']
                 # print(filters["flavor"])
             case "country":
                 filters["country"] = args['country']

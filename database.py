@@ -75,11 +75,12 @@ def get_sql_query_with_filters(filters):
             if col in ["country", "variety", "province"]:
                 if filt is None:
                     continue
-                where_clauses.append(f"{col} LIKE %{filt}%")
+                where_clauses.append(f"{col} LIKE '%{filt}%'")
             if col == "flavor":
                 if filt is None:
                     continue
-                for flavor in filters["flavor"]:
+                flavors = filters["flavor"].split(",")
+                for flavor in flavors:
                     where_clauses.append(f"review_content LIKE '%{flavor}%'")
             if "price" in col:
                 if col == "price_max":
